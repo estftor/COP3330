@@ -5,6 +5,7 @@
 
 import java.util.*;
 
+
 public class VideoGameScores {
 
 	public static void main(String[] args) {
@@ -15,7 +16,7 @@ public class VideoGameScores {
 
 		// Create the 2D array for scores and 1D array for names.
 		int[][] playerScores = new int[numPlayers][];
-		String[] playerNames = new String[numPlayers];
+		String[] playerNames = new String[numPlayers]; // array of objects automatically initialized to null
 		
 		if (playerScores[0] == null) System.out.println("yes init to null.");
 		
@@ -46,6 +47,15 @@ public class VideoGameScores {
 			double standardDev = stddev(playerScores[i]);
 			System.out.println(playerNames[i]+"\t"+playerScores[i].length+"\t\t"+average+"\t\t"+standardDev);
 		}
+		for (int i=0; i<numPlayers; i++) {
+			
+			sortArray(playerScores[i]);
+			printPlayer(playerNames[i], playerScores[i]);
+
+		}
+
+		
+		
    
 
 	}
@@ -80,6 +90,27 @@ public class VideoGameScores {
 		// The standard deviation is the square root of that value.
 		return Math.sqrt(sum);
 	}
+
+	static void sortArray(int[] data) {
+		int len = data.length -1 ;
+		Arrays.sort(data);
+		for( int i = 0; i <len; i++){
+			if(len > i){
+				int temp = data[i];
+				data[i] = data[len];
+				data[len] = temp;
+				len--;
+			}
+			
+		}
+	}
+
+	public static void printPlayer(String name, int[] scoreList){
+		System.out.printf("Player: %s\n", name);
+		System.out.println("Scores: " + Arrays.toString(scoreList));
+	}
+
+	
 }
 
 
